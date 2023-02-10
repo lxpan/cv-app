@@ -16,7 +16,8 @@
         "brace-style": ["error", "stroustrup"],
         "no-console": "off",
         "no-underscore-dangle": "off",
-        "operator-linebreak": ["error", "after"]
+        "operator-linebreak": ["error", "after"],
+        "class-methods-use-this": ["error", { "exceptMethods": ["render"] }]
     },
     "settings": {
         "react": {

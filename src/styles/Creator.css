@@ -1,0 +1,8 @@
+.creator-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    border: dotted 2px red;
+    margin: 10px;
+}

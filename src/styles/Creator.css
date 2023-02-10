@@ -1,8 +1,6 @@
 .creator-container {
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    align-items: center;
+    display: grid;
+    grid-template-rows: 3rem 1fr 1fr 1fr 2rem;
     border: dotted 2px red;
     margin: 10px;
 }

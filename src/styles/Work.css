@@ -1,0 +1,4 @@
+.work-container {
+    display: flex;
+    border: dotted 2px blue;
+}

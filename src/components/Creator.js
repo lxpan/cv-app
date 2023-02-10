@@ -12,6 +12,10 @@ class Creator extends React.Component {
                 <Personal />
                 <Education />
                 <Work />
+                <div className="creator-button-container">
+                    <button>Edit</button>
+                    <button>Submit</button>
+                </div>
             </div>
         );
     }

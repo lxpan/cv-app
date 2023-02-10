@@ -1,10 +1,10 @@
+import React from 'react';
+import Creator from './components/Creator';
 
-
-function App() {
-  return (
-    <div>
-    </div>
-  );
+class App extends React.Component {
+    render() {
+        return <Creator />;
+    }
 }
 
 export default App;

@@ -22,12 +22,15 @@ class Creator extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(e) {
+    handleChange(e, section) {
         const { name, value } = e.target;
 
-        const personalDetails = { ...this.state.personalDetails };
-        personalDetails[name] = value;
-        this.setState({ personalDetails });
+        const sectionDetails = { ...this.state[section] };
+        sectionDetails[name] = value;
+        this.setState({ sectionDetails });
+
+        // console.log(sectionDetails[name]);
+        // console.log(sectionDetails);
     }
 
     render() {

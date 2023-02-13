@@ -13,7 +13,7 @@ class Personal extends React.Component {
                         type={type}
                         name={forVal}
                         defaultValue={defaultVal}
-                        onChange={handleInputChange}
+                        onChange={(event) => handleInputChange(event, 'personalDetails')}
                     />
                 </label>
             );
@@ -32,7 +32,7 @@ class Personal extends React.Component {
                     <textarea
                         name="blurb"
                         defaultValue={personalInfo.blurb}
-                        onChange={handleInputChange}
+                        onChange={(event) => handleInputChange(event, 'personalDetails')}
                     />
                 </label>
             </div>

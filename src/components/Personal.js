@@ -6,11 +6,11 @@ class Personal extends React.Component {
     render() {
         const { personalInfo, handleInputChange } = this.props;
 
-        function personalInput(forVal, defaultVal) {
+        function personalInput(forVal, defaultVal, type = 'text') {
             return (
                 <label htmlFor={forVal}>
                     <input
-                        type="text"
+                        type={type}
                         name={forVal}
                         defaultValue={defaultVal}
                         onChange={handleInputChange}
@@ -24,14 +24,16 @@ class Personal extends React.Component {
                 <h3>Personal Details</h3>
                 {personalInput('name', personalInfo.name)}
                 {personalInput('email', personalInfo.email)}
-                <label htmlFor="number">
-                    <input type="text" name="number" defaultValue={personalInfo.number} />
-                </label>
+                {personalInput('number', personalInfo.number, 'tel')}
                 {personalInput('location', personalInfo.location)}
                 {personalInput('linkedin', personalInfo.linkedin)}
                 {personalInput('online', personalInfo.online)}
                 <label htmlFor="blurb" className="personal-blurb">
-                    <textarea name="blurb" defaultValue={personalInfo.blurb} />
+                    <textarea
+                        name="blurb"
+                        defaultValue={personalInfo.blurb}
+                        onChange={handleInputChange}
+                    />
                 </label>
             </div>
         );

@@ -4,12 +4,17 @@ import '../styles/Personal.css';
 
 class Personal extends React.Component {
     render() {
-        const { personalInfo } = this.props;
+        const { personalInfo, handleInputChange } = this.props;
 
         function personalInput(forVal, defaultVal) {
             return (
                 <label htmlFor={forVal}>
-                    <input type="text" name={forVal} defaultValue={defaultVal} />
+                    <input
+                        type="text"
+                        name={forVal}
+                        defaultValue={defaultVal}
+                        onChange={handleInputChange}
+                    />
                 </label>
             );
         }
@@ -37,4 +42,5 @@ export default Personal;
 
 Personal.propTypes = {
     personalInfo: PropTypes.object,
+    handleInputChange: PropTypes.func,
 };

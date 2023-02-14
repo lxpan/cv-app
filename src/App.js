@@ -19,6 +19,9 @@ class App extends React.Component {
                 online: 'www.janedoeportfolio.com',
                 blurb: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             },
+            workDetails: {
+                company: 'Acme Corp',
+            },
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -27,12 +30,14 @@ class App extends React.Component {
     handleChange(e, section) {
         const { name, value } = e.target;
 
+        // create a dummy object to perform changes on
         const sectionDetails = { ...this.state[section] };
+        // update value on dummy object
         sectionDetails[name] = value;
-        this.setState({ sectionDetails });
+        // replace state object with dummy object
+        this.setState({ personalDetails: { ...sectionDetails } });
 
-        // console.log(sectionDetails[name]);
-        // console.log(sectionDetails);
+        // console.log(this.state.personalDetails);
     }
 
     render() {

@@ -1,6 +1,0 @@
-.preview-container {
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr 2rem;
-    border: dotted 2px blue;
-    margin: 25px;
-}

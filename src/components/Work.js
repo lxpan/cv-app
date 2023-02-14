@@ -4,7 +4,7 @@ import '../styles/Work.css';
 
 class Work extends React.Component {
     render() {
-        const { workInfo, handleInputChange } = this.props;
+        const { workInfo, handleInputChange, handleWorkSubmit } = this.props;
 
         function workInput(forVal, defaultVal, type = 'text') {
             return (
@@ -22,12 +22,15 @@ class Work extends React.Component {
         return (
             <div className="personal-container">
                 <h3>Work Details</h3>
-                {workInput('company', workInfo.company)}
-                {workInput('position', workInfo.position)}
-                {workInput('dateFrom', workInfo.dateFrom)}
-                {workInput('dateTo', workInfo.dateTo)}
-                {workInput('location', workInfo.location)}
-                {workInput('description', workInfo.description)}
+                <form onSubmit={handleWorkSubmit}>
+                    {workInput('company', workInfo.company)}
+                    {workInput('position', workInfo.position)}
+                    {workInput('dateFrom', workInfo.dateFrom)}
+                    {workInput('dateTo', workInfo.dateTo)}
+                    {workInput('location', workInfo.location)}
+                    {workInput('description', workInfo.description)}
+                    <input type="submit" value="Submit" />
+                </form>
             </div>
         );
     }
@@ -37,5 +40,7 @@ export default Work;
 
 Work.propTypes = {
     workInfo: PropTypes.object,
+    workExperience: PropTypes.array,
     handleInputChange: PropTypes.func,
+    handleWorkSubmit: PropTypes.func,
 };

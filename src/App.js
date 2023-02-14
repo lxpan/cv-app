@@ -27,9 +27,12 @@ class App extends React.Component {
                 location: 'Acme City',
                 description: 'Survived the testing of over 100 products',
             },
+            workExperience: [],
+            workExperienceCounter: 0,
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleWorkSubmit = this.handleWorkSubmit.bind(this);
     }
 
     handleChange(e, section) {
@@ -45,6 +48,28 @@ class App extends React.Component {
         // console.log(this.state[section]);
     }
 
+    handleWorkSubmit(e) {
+        e.preventDefault();
+
+        // increment work experience counter
+        const newIndex = this.state.workExperienceCounter + 1;
+        this.setState({ workExperienceCounter: newIndex });
+
+        const newWorkExperience = { ...this.state.workDetails };
+        // assign counter as the id
+        newWorkExperience.id = newIndex;
+
+        this.setState({
+            workExperience: [...this.state.workExperience, newWorkExperience],
+        });
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.workExperience.length !== prevState.workExperience.length) {
+            console.log(this.state.workExperience);
+        }
+    }
+
     render() {
         return (
             <div className="cv-grid">
@@ -53,11 +78,16 @@ class App extends React.Component {
                         personalInfo={this.state.personalDetails}
                         handleInputChange={this.handleChange}
                     />
-                    <Work workInfo={this.state.workDetails} handleInputChange={this.handleChange} />
+                    <Work
+                        workInfo={this.state.workDetails}
+                        handleInputChange={this.handleChange}
+                        handleWorkSubmit={this.handleWorkSubmit}
+                    />
                     <Education />
                     <div className="creator-button-container">
                         <button>Edit</button>
                         <button>Submit</button>
+                        export default App;
                     </div>
                 </div>
 

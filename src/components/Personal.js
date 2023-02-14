@@ -27,7 +27,6 @@ class Personal extends React.Component {
                 {personalInput('email', personalInfo.email)}
                 {personalInput('number', personalInfo.number, 'tel')}
                 {personalInput('location', personalInfo.location)}
-                {personalInput('linkedin', personalInfo.linkedin)}
                 {personalInput('online', personalInfo.online)}
                 <label htmlFor="blurb" className="personal-blurb">
                     <textarea

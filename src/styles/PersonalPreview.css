@@ -1,0 +1,54 @@
+h1,
+h2,
+h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.personal-preview-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 2fr 3fr;
+    grid-template-areas:
+        "name contact"
+        "blurb blurb";
+    /* border: dotted 2px green; */
+    gap: 5px;
+    margin: 30px;
+}
+
+.personal-preview-name {
+    grid-area: name;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.personal-preview-name__heading {
+    font-size: 2.5rem;
+}
+
+.personal-preview-contact {
+    grid-area: contact;
+    display: flex;
+    flex-direction: column;
+    font-size: .9rem;
+}
+
+.personal-summary-heading {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.personal-summary-heading hr {
+    flex-grow: 1;
+    border: solid 1px black;
+}
+
+.personal-preview-blurb {
+    grid-area: blurb;
+    font-size: .9rem;
+}

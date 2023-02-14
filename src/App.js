@@ -1,5 +1,6 @@
 import React from 'react';
 import Personal from './components/Personal';
+import PersonalPreview from './components/PersonalPreview';
 import Education from './components/Education';
 import Work from './components/Work';
 import './styles/App.css';
@@ -10,6 +11,7 @@ class App extends React.Component {
         this.state = {
             personalDetails: {
                 name: 'Jane Doe',
+                profession: 'Software Engineer',
                 email: 'j.doe@mail.com',
                 number: '555-555-555',
                 location: 'Melbourne, AU',
@@ -50,7 +52,7 @@ class App extends React.Component {
                 </div>
 
                 <div className="preview-container">
-                    <h3>Preview Component</h3>
+                    <PersonalPreview personalInfo={this.state.personalDetails} />
                 </div>
             </div>
         );

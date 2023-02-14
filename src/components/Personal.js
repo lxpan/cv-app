@@ -23,6 +23,7 @@ class Personal extends React.Component {
             <div className="personal-container">
                 <h3>Personal Details</h3>
                 {personalInput('name', personalInfo.name)}
+                {personalInput('profession', personalInfo.profession)}
                 {personalInput('email', personalInfo.email)}
                 {personalInput('number', personalInfo.number, 'tel')}
                 {personalInput('location', personalInfo.location)}

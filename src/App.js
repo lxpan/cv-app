@@ -87,7 +87,6 @@ class App extends React.Component {
                     <div className="creator-button-container">
                         <button>Edit</button>
                         <button>Submit</button>
-                        export default App;
                     </div>
                 </div>
 

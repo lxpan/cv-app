@@ -2,6 +2,12 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+h3 {
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+}
+
 .personal-container {
     display: flex;
     flex-direction: column;
@@ -29,5 +35,4 @@ body {
     flex: 1;
     font-family: sans-serif;
     resize: none;
-
 }

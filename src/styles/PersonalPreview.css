@@ -48,9 +48,10 @@ h3 {
     margin-bottom: 10px;
 }
 
-.personal-summary-heading hr {
+.personal-summary-heading_divider {
     flex-grow: 1;
-    border: solid 1px black;
+    height: 2px;
+    background-color: black;
 }
 
 .personal-preview-blurb {

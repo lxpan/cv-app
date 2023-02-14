@@ -43,7 +43,7 @@ class PersonalPreview extends React.Component {
                 <div className="personal-preview-blurb">
                     <div className="personal-summary-heading">
                         <h3>Summary</h3>
-                        <hr></hr>
+                        <div className="personal-summary-heading_divider"></div>
                     </div>
                     {personalInfo.blurb}
                 </div>

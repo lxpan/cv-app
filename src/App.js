@@ -21,6 +21,11 @@ class App extends React.Component {
             },
             workDetails: {
                 company: 'Acme Corp',
+                position: 'Product Tester',
+                dateFrom: 'June, 2020',
+                dateTo: 'February, 2021',
+                location: 'Acme City',
+                description: 'Survived the testing of over 100 products',
             },
         };
 
@@ -48,7 +53,10 @@ class App extends React.Component {
                         personalInfo={this.state.personalDetails}
                         handleInputChange={this.handleChange}
                     />
-                    <Work />
+                    <Work
+                        workInfo={this.state.workDetails}
+                        // handleInputChange={this.handleChange}
+                    />
                     <Education />
                     <div className="creator-button-container">
                         <button>Edit</button>

@@ -13,7 +13,7 @@ class Work extends React.Component {
                         type={type}
                         name={forVal}
                         defaultValue={defaultVal}
-                        onChange={(event) => handleInputChange(event, 'personalDetails')}
+                        onChange={(event) => handleInputChange(event, 'workDetails')}
                     />
                 </label>
             );

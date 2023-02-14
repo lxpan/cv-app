@@ -39,10 +39,10 @@ class App extends React.Component {
         const sectionDetails = { ...this.state[section] };
         // update value on dummy object
         sectionDetails[name] = value;
-        // replace state object with dummy object
-        this.setState({ personalDetails: { ...sectionDetails } });
+        // replace section details object with dummy object
+        this.setState({ [section]: sectionDetails });
 
-        // console.log(this.state.personalDetails);
+        // console.log(this.state[section]);
     }
 
     render() {
@@ -53,10 +53,7 @@ class App extends React.Component {
                         personalInfo={this.state.personalDetails}
                         handleInputChange={this.handleChange}
                     />
-                    <Work
-                        workInfo={this.state.workDetails}
-                        // handleInputChange={this.handleChange}
-                    />
+                    <Work workInfo={this.state.workDetails} handleInputChange={this.handleChange} />
                     <Education />
                     <div className="creator-button-container">
                         <button>Edit</button>

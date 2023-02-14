@@ -23,7 +23,7 @@ body {
 
 .preview-container {
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 2rem;
+    grid-template-rows: 3fr 4fr 4fr 2rem;
     border: dotted 2px blue;
     margin: 25px;
 }

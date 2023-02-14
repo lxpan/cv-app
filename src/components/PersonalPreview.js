@@ -1,6 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/PersonalPreview.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faSquarePhone,
+    faSquareEnvelope,
+    faSquareArrowUpRight,
+    faSquareH,
+} from '@fortawesome/free-solid-svg-icons';
 
 class PersonalPreview extends React.Component {
     render() {
@@ -16,9 +23,22 @@ class PersonalPreview extends React.Component {
                 </div>
 
                 <div className="personal-preview-contact">
-                    <span>{personalInfo.number}</span>
-                    <span>{personalInfo.email}</span>
-                    <span>{personalInfo.location}</span>
+                    <span className="personal-preview-contact_item">
+                        <FontAwesomeIcon icon={faSquarePhone} />
+                        {personalInfo.number}
+                    </span>
+                    <span className="personal-preview-contact_item">
+                        <FontAwesomeIcon icon={faSquareEnvelope} />
+                        {personalInfo.email}
+                    </span>
+                    <span className="personal-preview-contact_item">
+                        <FontAwesomeIcon icon={faSquareArrowUpRight} />
+                        {personalInfo.online}
+                    </span>
+                    <span className="personal-preview-contact_item">
+                        <FontAwesomeIcon icon={faSquareH} />
+                        {personalInfo.location}
+                    </span>
                 </div>
                 <div className="personal-preview-blurb">
                     <div className="personal-summary-heading">

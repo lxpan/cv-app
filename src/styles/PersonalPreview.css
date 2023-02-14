@@ -32,7 +32,12 @@ h3 {
     grid-area: contact;
     display: flex;
     flex-direction: column;
-    font-size: .9rem;
+    font-size: 1rem;
+}
+
+.personal-preview-contact_item {
+    display: flex;
+    gap: 4px;
 }
 
 .personal-summary-heading {

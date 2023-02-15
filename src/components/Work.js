@@ -13,6 +13,7 @@ class Work extends React.Component {
                         type={type}
                         name={forVal}
                         defaultValue={defaultVal}
+                        placeholder={forVal[0].toUpperCase() + forVal.substring(1)}
                         onChange={(event) => handleInputChange(event, 'workDetails')}
                     />
                 </label>

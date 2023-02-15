@@ -30,7 +30,7 @@ class Work extends React.Component {
                     {workInput('dateTo', workInfo.dateTo)}
                     {workInput('location', workInfo.location)}
                     {workInput('description', workInfo.description)}
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Add Experience" />
                 </form>
             </div>
         );

@@ -1,0 +1,71 @@
+h1,
+h2,
+h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.work-preview-container {
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+}
+
+.work-section-heading {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.work-section_h3 {
+    flex-grow: 0;
+}
+
+.work-section-divider {
+    flex-grow: 1;
+    height: 2px;
+    background-color: black;
+}
+
+.work-experience-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.company-heading {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    margin-top: 10px;
+    font-size: .9rem;
+}
+
+.company-location_span {
+    display: flex;
+    justify-content: flex-end;
+    font-style: italic;
+    color: maroon;
+}
+
+.job-title-and-tenure {
+    margin-top: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-size: .9rem;
+}
+
+.job-title {
+    font-size: .8rem;
+}
+
+.job-tenure-dateRange {
+    display: flex;
+    justify-content: flex-end;
+    font-weight: lighter;
+    font-style: italic;
+}
+
+.job-experience-description {
+    font-size: .9rem;
+    margin-top: 5px;
+}

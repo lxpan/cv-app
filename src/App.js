@@ -1,8 +1,9 @@
 import React from 'react';
 import Personal from './components/Personal';
 import PersonalPreview from './components/PersonalPreview';
-import Education from './components/Education';
 import Work from './components/Work';
+import WorkPreview from './components/WorkPreview';
+import Education from './components/Education';
 import './styles/App.css';
 
 class App extends React.Component {
@@ -27,7 +28,16 @@ class App extends React.Component {
                 location: 'Acme City',
                 description: 'Survived the testing of over 100 products',
             },
-            workExperience: [],
+            workExperience: [
+                {
+                    company: 'Acme Corp',
+                    position: 'Product Tester',
+                    dateFrom: 'June, 2020',
+                    dateTo: 'February, 2021',
+                    location: 'Acme City',
+                    description: 'Survived the testing of over 100 products',
+                },
+            ],
             workExperienceCounter: 0,
         };
 
@@ -115,6 +125,7 @@ class App extends React.Component {
 
                 <div className="preview-container">
                     <PersonalPreview personalInfo={this.state.personalDetails} />
+                    <WorkPreview workExperience={this.state.workExperience} />
                 </div>
             </div>
         );

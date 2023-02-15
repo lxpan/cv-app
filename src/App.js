@@ -33,6 +33,25 @@ class App extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleWorkSubmit = this.handleWorkSubmit.bind(this);
+        this.resetFormInput = this.resetFormInput.bind(this);
+    }
+
+    resetFormInput() {
+        const emptyWorkDetails = {
+            company: '',
+            position: '',
+            dateFrom: '',
+            dateTo: '',
+            location: '',
+            description: '',
+        };
+
+        this.setState({ workDetails: emptyWorkDetails });
+
+        const inputs = Array.from(document.querySelectorAll('.work-container input'));
+        inputs.forEach((input) => {
+            input.value = '';
+        });
     }
 
     handleChange(e, section) {
@@ -62,12 +81,16 @@ class App extends React.Component {
         this.setState({
             workExperience: [...this.state.workExperience, newWorkExperience],
         });
+
+        this.resetFormInput();
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (this.state.workExperience.length !== prevState.workExperience.length) {
             console.log(this.state.workExperience);
         }
+
+        console.log(this.state.workDetails);
     }
 
     render() {

@@ -17,7 +17,8 @@
         "no-console": "off",
         "no-underscore-dangle": "off",
         "operator-linebreak": ["error", "after"],
-        "class-methods-use-this": ["error", { "exceptMethods": ["render"] }]
+        "class-methods-use-this": ["error", { "exceptMethods": ["render"] }],
+        "no-param-reassign": ["error", { "props": false }]
     },
     "settings": {
         "react": {

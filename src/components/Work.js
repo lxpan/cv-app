@@ -20,7 +20,7 @@ class Work extends React.Component {
         }
 
         return (
-            <div className="personal-container">
+            <div className="work-container">
                 <h3>Work Details</h3>
                 <form onSubmit={handleWorkSubmit}>
                     {workInput('company', workInfo.company)}

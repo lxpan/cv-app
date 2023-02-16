@@ -19,8 +19,9 @@ const defaultWorkExperience = {
 const defaultEducationExperience = {
     provider: 'University of Hard Knocks',
     location: 'Acme City',
-    program: 'Bachelor of Web Development',
-    major: 'React & Node.js',
+    program: 'Bachelor of InfoTech',
+    major: 'Web Development',
+    minor: 'Machine Learning',
     dateFrom: 'January, 2022',
     dateTo: 'March, 2023',
 };

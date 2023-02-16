@@ -22,7 +22,8 @@ class EducationPreview extends React.Component {
                             {eduItem.dateFrom} - {eduItem.dateTo}
                         </span>
                     </div>
-                    <div className="program-major">Area of Study: {eduItem.major}</div>
+                    <div className="program-minor-major">Major: {eduItem.major}</div>
+                    <div className="program-minor-major">Minor: {eduItem.minor}</div>
                 </div>
             );
         }

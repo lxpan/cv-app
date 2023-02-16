@@ -119,7 +119,7 @@ class App extends React.Component {
             workExperience: [...this.state.workExperience, newWorkExperience],
         });
 
-        this.resetFormInput();
+        this.resetWorkFormInput();
     }
 
     handleEducationSubmit(e) {

@@ -1,5 +1,6 @@
 :root {
     --long-form-text-colour: #303030;
+    --long-form-text-size: .8rem;
 }
 
 h1,
@@ -70,7 +71,7 @@ h3 {
 }
 
 .job-experience-description {
-    font-size: .9rem;
+    font-size: var(--long-form-text-size);
     margin-top: 5px;
     color: var(--long-form-text-colour);
 }

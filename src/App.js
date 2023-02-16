@@ -1,11 +1,13 @@
 import React from 'react';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 import Personal from './components/Personal';
 import PersonalPreview from './components/PersonalPreview';
 import Work from './components/Work';
 import WorkPreview from './components/WorkPreview';
 import Education from './components/Education';
-import './styles/App.css';
 import EducationPreview from './components/EducationPreview';
+import './styles/App.css';
 
 const defaultWorkExperience = {
     company: 'Acme Corp',
@@ -157,6 +159,30 @@ class App extends React.Component {
     }
 
     render() {
+        function generatePDF() {
+            const input = document.getElementById('previewCV');
+            html2canvas(input).then((canvas) => {
+                const image = canvas.toDataURL('image/jpeg', 1.0);
+                const doc = new jsPDF('p', 'px', 'a4');
+                const pageWidth = doc.internal.pageSize.getWidth();
+                const pageHeight = doc.internal.pageSize.getHeight();
+
+                const widthRatio = pageWidth / canvas.width;
+                const heightRatio = pageHeight / canvas.height;
+                const ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
+
+                const canvasWidth = canvas.width * ratio;
+                const canvasHeight = canvas.height * ratio;
+
+                const marginX = (pageWidth - canvasWidth) / 2;
+                // const marginY = (pageHeight - canvasHeight) / 2;
+                const marginY = 30;
+
+                doc.addImage(image, 'JPEG', marginX, marginY, canvasWidth, canvasHeight);
+                doc.output('dataurlnewwindow');
+            });
+        }
+
         return (
             <div className="cv-grid">
                 <div className="creator-container">
@@ -175,12 +201,13 @@ class App extends React.Component {
                         handleEducationSubmit={this.handleEducationSubmit}
                     />
                     <div className="creator-button-container">
-                        <button>Edit</button>
-                        <button>Submit</button>
+                        <button id="savePdfBtn" onClick={generatePDF}>
+                            Save Preview as PDF
+                        </button>
                     </div>
                 </div>
 
-                <div className="preview-container">
+                <div className="preview-container" id="previewCV">
                     <PersonalPreview personalInfo={this.state.personalDetails} />
                     <WorkPreview workExperience={this.state.workExperience} />
                     <EducationPreview educationExperience={this.state.educationExperience} />

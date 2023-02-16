@@ -28,3 +28,16 @@ body {
     margin: 25px;
     gap: 10px;
 }
+
+.creator-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+#savePdfBtn {
+    background-color: lightblue;
+    font-weight: 500;
+    padding: 10px;
+}

@@ -18,7 +18,8 @@
         "no-underscore-dangle": "off",
         "operator-linebreak": ["error", "after"],
         "class-methods-use-this": ["error", { "exceptMethods": ["render"] }],
-        "no-param-reassign": ["error", { "props": false }]
+        "no-param-reassign": ["error", { "props": false }],
+        "new-cap": ["error", { "newIsCapExceptions": ["jsPDF"] }]
     },
     "settings": {
         "react": {

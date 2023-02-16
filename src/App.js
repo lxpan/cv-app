@@ -24,6 +24,7 @@ const defaultEducationExperience = {
     minor: 'Machine Learning',
     dateFrom: 'January, 2022',
     dateTo: 'March, 2023',
+    id: 0,
 };
 
 class App extends React.Component {

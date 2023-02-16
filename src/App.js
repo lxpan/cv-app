@@ -167,6 +167,7 @@ class App extends React.Component {
                     />
                     <Education
                         educationInfo={this.state.educationDetails}
+                        handleInputChange={this.handleChange}
                         handleEducationSubmit={this.handleEducationSubmit}
                     />
                     <div className="creator-button-container">

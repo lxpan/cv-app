@@ -9,6 +9,25 @@ class EducationPreview extends React.Component {
 
         // const lorem = new LoremIpsum();
 
+        function renderStudy(eduItem) {
+            let render;
+            if (eduItem.major && eduItem.minor) {
+                render = (
+                    <>
+                        <div className="program-minor-major">Major: {eduItem.major}</div>
+                        <div className="program-minor-major">Minor: {eduItem.minor}</div>
+                    </>
+                );
+            }
+            else if (eduItem.major) {
+                render = <div className="program-minor-major">Major: {eduItem.major}</div>;
+            }
+            else if (eduItem.minor) {
+                render = <div className="program-minor-major">Minor: {eduItem.minor}</div>;
+            }
+            return render;
+        }
+
         function EducationExperienceEntry(eduItem) {
             return (
                 <div className="education-experience-item" key={eduItem.id}>
@@ -22,8 +41,10 @@ class EducationPreview extends React.Component {
                             {eduItem.dateFrom} - {eduItem.dateTo}
                         </span>
                     </div>
-                    <div className="program-minor-major">Major: {eduItem.major}</div>
-                    <div className="program-minor-major">Minor: {eduItem.minor}</div>
+                    {renderStudy(eduItem)}
+                    {/* <div className="program-minor-major">Major: {eduItem.major}</div>
+
+                    <div className="program-minor-major">Minor: {eduItem.minor}</div> */}
                 </div>
             );
         }

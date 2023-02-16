@@ -14,6 +14,7 @@ const defaultWorkExperience = {
     dateTo: 'February, 2021',
     location: 'Acme City',
     description: 'Survived the testing of over 100 products',
+    id: 0,
 };
 
 const defaultEducationExperience = {

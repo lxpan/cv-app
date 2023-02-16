@@ -20,7 +20,7 @@ class WorkPreview extends React.Component {
             }
 
             return (
-                <div className="work-experience-item">
+                <div className="work-experience-item" key={workItem.id}>
                     <div className="company-heading">
                         <b>{workItem.company}</b>
                         <span className="company-location_span">{workItem.location}</span>

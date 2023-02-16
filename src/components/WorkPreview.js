@@ -42,7 +42,7 @@ class WorkPreview extends React.Component {
                     <h3 className="work-section_h3">Work Experience</h3>
                     <div className="work-section-divider"></div>
                 </div>
-                {workExperience.map((item) => workExperienceEntry(item, true))}
+                {workExperience.map((item) => workExperienceEntry(item))}
             </div>
         );
     }

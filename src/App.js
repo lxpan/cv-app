@@ -1,5 +1,6 @@
 import React from 'react';
 import { jsPDF } from 'jspdf';
+import { LoremIpsum } from 'lorem-ipsum';
 import html2canvas from 'html2canvas';
 import Personal from './components/Personal';
 import PersonalPreview from './components/PersonalPreview';
@@ -9,13 +10,25 @@ import Education from './components/Education';
 import EducationPreview from './components/EducationPreview';
 import './styles/App.css';
 
-const defaultWorkExperience = {
+const lorem = new LoremIpsum();
+
+const defaultWorkExperienceB = {
     company: 'Acme Corp',
     position: 'Product Tester',
     dateFrom: 'June, 2020',
     dateTo: 'February, 2021',
     location: 'Acme City',
-    description: 'Survived the testing of over 100 products',
+    description: lorem.generateSentences(5),
+    id: 0,
+};
+
+const defaultWorkExperienceA = {
+    company: 'MegaCorp',
+    position: 'Software Guy',
+    dateFrom: 'February, 2021',
+    dateTo: 'Present',
+    location: 'Acme City',
+    description: lorem.generateSentences(5),
     id: 0,
 };
 
@@ -42,10 +55,10 @@ class App extends React.Component {
                 location: 'Melbourne, AU',
                 linkedin: 'linked.in/jane.doe',
                 online: 'www.janedoeportfolio.com',
-                blurb: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                blurb: lorem.generateSentences(5),
             },
-            workDetails: defaultWorkExperience,
-            workExperience: [defaultWorkExperience],
+            workDetails: defaultWorkExperienceA,
+            workExperience: [defaultWorkExperienceA, defaultWorkExperienceB],
             workExperienceCounter: 0,
             educationDetails: defaultEducationExperience,
             educationExperience: [defaultEducationExperience],

@@ -25,11 +25,13 @@ class Education extends React.Component {
                 <h3>Education Details</h3>
                 <form onSubmit={handleEducationSubmit}>
                     {educationInput('provider', educationInfo.provider)}
+                    {educationInput('location', educationInfo.location)}
                     {educationInput('program', educationInfo.program)}
                     {educationInput('dateFrom', educationInfo.dateFrom)}
                     {educationInput('dateTo', educationInfo.dateTo)}
                     {educationInput('major', educationInfo.major)}
-                    {educationInput('location', educationInfo.location)}
+                    {educationInput('minor', educationInfo.minor)}
+
                     <input type="submit" value="Add Experience" />
                 </form>
             </div>

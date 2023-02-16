@@ -23,7 +23,7 @@ const defaultWorkExperienceB = {
 };
 
 const defaultWorkExperienceA = {
-    company: 'MegaCorp',
+    company: 'Mega Corp',
     position: 'Software Guy',
     dateFrom: 'February, 2021',
     dateTo: 'Present',

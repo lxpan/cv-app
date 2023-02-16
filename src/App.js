@@ -47,10 +47,12 @@ class App extends React.Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
+
         this.handleWorkSubmit = this.handleWorkSubmit.bind(this);
         this.handleEducationSubmit = this.handleEducationSubmit.bind(this);
-        this.resetWorkFormInput = this.resetFormInput.bind(this);
-        this.resetEducationFormInput = this.resetEducationFormInput(this);
+
+        this.resetWorkFormInput = this.resetWorkFormInput.bind(this);
+        this.resetEducationFormInput = this.resetEducationFormInput.bind(this);
     }
 
     resetWorkFormInput() {
@@ -72,16 +74,16 @@ class App extends React.Component {
     }
 
     resetEducationFormInput() {
-        // const emptyWorkDetails = {
-        //     company: '',
-        //     position: '',
-        //     dateFrom: '',
-        //     dateTo: '',
-        //     location: '',
-        //     description: '',
-        // };
+        const emptyEducationDetails = {
+            provider: '',
+            location: '',
+            program: '',
+            major: '',
+            dateFrom: '',
+            dateTo: '',
+        };
 
-        // this.setState({ workDetails: emptyWorkDetails });
+        this.setState({ educationDetails: emptyEducationDetails });
 
         const inputs = Array.from(document.querySelectorAll('.education-container input'));
         inputs.forEach((input) => {
@@ -135,15 +137,19 @@ class App extends React.Component {
             educationExperience: [...this.state.educationExperience, newEducationExperience],
         });
 
-        this.resetFormInput();
+        this.resetEducationFormInput();
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (this.state.workExperience.length !== prevState.workExperience.length) {
             console.log(this.state.workExperience);
+            console.log(this.state.workDetails);
         }
 
-        console.log(this.state.workDetails);
+        if (this.state.educationExperience.length !== prevState.educationDetails.length) {
+            console.log(this.state.educationExperience);
+            console.log(this.state.educationDetails);
+        }
     }
 
     render() {

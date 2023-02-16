@@ -15,6 +15,15 @@ const defaultWorkExperience = {
     description: 'Survived the testing of over 100 products',
 };
 
+const defaultEducationExperience = {
+    provider: 'University of Hard Knocks',
+    location: 'Acme City',
+    program: 'Bachelor of Web Development',
+    major: 'React & Node.js',
+    dateFrom: 'January, 2022',
+    dateTo: 'March, 2023',
+};
+
 class App extends React.Component {
     constructor() {
         super();
@@ -32,14 +41,19 @@ class App extends React.Component {
             workDetails: defaultWorkExperience,
             workExperience: [defaultWorkExperience],
             workExperienceCounter: 0,
+            educationDetails: defaultEducationExperience,
+            educationExperience: [defaultEducationExperience],
+            educationExperienceCounter: 0,
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleWorkSubmit = this.handleWorkSubmit.bind(this);
-        this.resetFormInput = this.resetFormInput.bind(this);
+        this.handleEducationSubmit = this.handleEducationSubmit.bind(this);
+        this.resetWorkFormInput = this.resetFormInput.bind(this);
+        this.resetEducationFormInput = this.resetEducationFormInput(this);
     }
 
-    resetFormInput() {
+    resetWorkFormInput() {
         const emptyWorkDetails = {
             company: '',
             position: '',
@@ -52,6 +66,24 @@ class App extends React.Component {
         this.setState({ workDetails: emptyWorkDetails });
 
         const inputs = Array.from(document.querySelectorAll('.work-container input'));
+        inputs.forEach((input) => {
+            input.value = '';
+        });
+    }
+
+    resetEducationFormInput() {
+        // const emptyWorkDetails = {
+        //     company: '',
+        //     position: '',
+        //     dateFrom: '',
+        //     dateTo: '',
+        //     location: '',
+        //     description: '',
+        // };
+
+        // this.setState({ workDetails: emptyWorkDetails });
+
+        const inputs = Array.from(document.querySelectorAll('.education-container input'));
         inputs.forEach((input) => {
             input.value = '';
         });
@@ -88,6 +120,24 @@ class App extends React.Component {
         this.resetFormInput();
     }
 
+    handleEducationSubmit(e) {
+        e.preventDefault();
+
+        // increment work experience counter
+        const newIndex = this.state.educationExperienceCounter + 1;
+        this.setState({ educationExperienceCounter: newIndex });
+
+        const newEducationExperience = { ...this.state.educationDetails };
+        // assign counter as the id
+        newEducationExperience.id = newIndex;
+
+        this.setState({
+            educationExperience: [...this.state.educationExperience, newEducationExperience],
+        });
+
+        this.resetFormInput();
+    }
+
     componentDidUpdate(prevProps, prevState) {
         if (this.state.workExperience.length !== prevState.workExperience.length) {
             console.log(this.state.workExperience);
@@ -109,7 +159,10 @@ class App extends React.Component {
                         handleInputChange={this.handleChange}
                         handleWorkSubmit={this.handleWorkSubmit}
                     />
-                    <Education />
+                    <Education
+                        educationInfo={this.state.educationDetails}
+                        handleEducationSubmit={this.handleEducationSubmit}
+                    />
                     <div className="creator-button-container">
                         <button>Edit</button>
                         <button>Submit</button>

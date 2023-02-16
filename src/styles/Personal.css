@@ -32,7 +32,7 @@ h3 {
 }
 
 .personal-blurb textarea {
-    flex: 1;
+    min-height: 100px;
     font-family: sans-serif;
     resize: none;
 }

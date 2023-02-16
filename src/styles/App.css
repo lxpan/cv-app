@@ -10,7 +10,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     border: solid 1px black;
-    width: 90vw;
+    width: 80vw;
 }
 
 .creator-container {

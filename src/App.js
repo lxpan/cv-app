@@ -5,6 +5,7 @@ import Work from './components/Work';
 import WorkPreview from './components/WorkPreview';
 import Education from './components/Education';
 import './styles/App.css';
+import EducationPreview from './components/EducationPreview';
 
 const defaultWorkExperience = {
     company: 'Acme Corp',
@@ -179,6 +180,7 @@ class App extends React.Component {
                 <div className="preview-container">
                     <PersonalPreview personalInfo={this.state.personalDetails} />
                     <WorkPreview workExperience={this.state.workExperience} />
+                    <EducationPreview educationExperience={this.state.educationExperience} />
                 </div>
             </div>
         );

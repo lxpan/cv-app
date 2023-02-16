@@ -24,6 +24,6 @@ body {
 .preview-container {
     display: flex;
     flex-direction: column;
-    border: dotted 2px blue;
+    /* border: dotted 2px blue; */
     margin: 25px;
 }

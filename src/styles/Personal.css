@@ -11,7 +11,7 @@ h3 {
 .personal-container {
     display: flex;
     flex-direction: column;
-    border: dotted 2px green;
+    /* border: dotted 2px green; */
     gap: 5px;
 }
 

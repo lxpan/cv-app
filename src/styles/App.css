@@ -16,7 +16,7 @@ body {
 .creator-container {
     display: flex;
     flex-direction: column;
-    border: dotted 2px red;
+    /* border: dotted 2px red; */
     margin: 25px;
     gap: 10px;
 }
@@ -26,4 +26,5 @@ body {
     flex-direction: column;
     /* border: dotted 2px blue; */
     margin: 25px;
+    gap: 10px;
 }

@@ -9,7 +9,7 @@ class WorkPreview extends React.Component {
 
         const lorem = new LoremIpsum();
 
-        function WorkExperienceEntry(workItem, loremIpsum = false) {
+        function workExperienceEntry(workItem, loremIpsum = false) {
             let description;
 
             if (loremIpsum) {
@@ -42,7 +42,7 @@ class WorkPreview extends React.Component {
                     <h3 className="work-section_h3">Work Experience</h3>
                     <div className="work-section-divider"></div>
                 </div>
-                {workExperience.map((item) => WorkExperienceEntry(item, true))}
+                {workExperience.map((item) => workExperienceEntry(item, true))}
             </div>
         );
     }

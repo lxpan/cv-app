@@ -28,7 +28,7 @@ class EducationPreview extends React.Component {
             return render;
         }
 
-        function EducationExperienceEntry(eduItem) {
+        function educationExperienceEntry(eduItem) {
             return (
                 <div className="education-experience-item" key={eduItem.id}>
                     <div className="provider-heading">
@@ -56,7 +56,7 @@ class EducationPreview extends React.Component {
                     <div className="education-section-divider"></div>
                 </div>
 
-                {educationExperience.map((item) => EducationExperienceEntry(item))}
+                {educationExperience.map((item) => educationExperienceEntry(item))}
             </div>
         );
     }

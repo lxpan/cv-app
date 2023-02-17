@@ -190,17 +190,17 @@ class App extends React.Component {
         });
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (this.state.workExperience.length !== prevState.workExperience.length) {
-            console.log(this.state.workExperience);
-            console.log(this.state.workDetails);
-        }
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (this.state.workExperience.length !== prevState.workExperience.length) {
+    //         console.log(this.state.workExperience);
+    //         console.log(this.state.workDetails);
+    //     }
 
-        if (this.state.educationExperience.length !== prevState.educationDetails.length) {
-            console.log(this.state.educationExperience);
-            console.log(this.state.educationDetails);
-        }
-    }
+    //     if (this.state.educationExperience.length !== prevState.educationDetails.length) {
+    //         console.log(this.state.educationExperience);
+    //         console.log(this.state.educationDetails);
+    //     }
+    // }
 
     render() {
         function generatePDF() {

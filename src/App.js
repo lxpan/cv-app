@@ -19,7 +19,7 @@ const defaultWorkExperienceB = {
     dateTo: 'February, 2021',
     location: 'Acme City',
     description: lorem.generateSentences(5),
-    id: 0,
+    id: 1,
 };
 
 const defaultWorkExperienceA = {
@@ -59,7 +59,7 @@ class App extends React.Component {
             },
             workDetails: defaultWorkExperienceA,
             workExperience: [defaultWorkExperienceA, defaultWorkExperienceB],
-            workExperienceCounter: 0,
+            workExperienceCounter: 1,
             educationDetails: defaultEducationExperience,
             educationExperience: [defaultEducationExperience],
             educationExperienceCounter: 0,

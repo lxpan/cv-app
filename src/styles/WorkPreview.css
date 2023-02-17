@@ -36,6 +36,21 @@ h3 {
 .work-experience-item {
     display: flex;
     flex-direction: column;
+    position: relative;
+}
+
+.editWorkBtn {
+    position: absolute;
+    top: 10%;
+    z-index: 2;
+    display: none;
+    padding: 4px;
+    background-color: lightblue;
+    font-size: 1rem;
+}
+
+.work-experience-item:hover .editWorkBtn {
+    display: block;
 }
 
 .company-heading {

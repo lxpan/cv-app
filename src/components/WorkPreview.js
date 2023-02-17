@@ -5,7 +5,7 @@ import '../styles/WorkPreview.css';
 
 class WorkPreview extends React.Component {
     render() {
-        const { workExperience } = this.props;
+        const { workExperience, handleWorkEdit } = this.props;
 
         const lorem = new LoremIpsum();
 
@@ -32,6 +32,12 @@ class WorkPreview extends React.Component {
                         </span>
                     </div>
                     <div className="job-experience-description">{description}</div>
+                    <button
+                        className="editWorkBtn"
+                        onClick={(event) => handleWorkEdit(event, workItem.id)}
+                    >
+                        Edit Entry
+                    </button>
                 </div>
             );
         }
@@ -52,4 +58,5 @@ export default WorkPreview;
 
 WorkPreview.propTypes = {
     workExperience: PropTypes.array,
+    handleWorkEdit: PropTypes.func,
 };

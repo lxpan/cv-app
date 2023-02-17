@@ -67,9 +67,12 @@ class App extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
 
+        // button event handlers
         this.handleWorkSubmit = this.handleWorkSubmit.bind(this);
+        this.handleWorkEdit = this.handleWorkEdit.bind(this);
         this.handleEducationSubmit = this.handleEducationSubmit.bind(this);
 
+        // reset handlers
         this.resetWorkFormInput = this.resetWorkFormInput.bind(this);
         this.resetEducationFormInput = this.resetEducationFormInput.bind(this);
     }
@@ -159,15 +162,27 @@ class App extends React.Component {
         this.resetEducationFormInput();
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (this.state.workExperience.length !== prevState.workExperience.length) {
-            console.log(this.state.workExperience);
-            console.log(this.state.workDetails);
-        }
+    handleWorkEdit(e, id) {
+        const workItem = this.state.workExperience.filter((exp) => exp.id === id);
+        this.setState({
+            workDetails: workItem[0],
+        });
+    }
 
-        if (this.state.educationExperience.length !== prevState.educationDetails.length) {
-            console.log(this.state.educationExperience);
-            console.log(this.state.educationDetails);
+    componentDidUpdate(prevProps, prevState) {
+        // if (this.state.workExperience.length !== prevState.workExperience.length) {
+        //     console.log(this.state.workExperience);
+        //     console.log(this.state.workDetails);
+        // }
+
+        // if (this.state.educationExperience.length !== prevState.educationDetails.length) {
+        //     console.log(this.state.educationExperience);
+        //     console.log(this.state.educationDetails);
+        // }
+
+        if (this.state.workDetails !== prevState.workDetails) {
+            console.log('Current state.workDetails');
+            console.log(this.state.workDetails);
         }
     }
 
@@ -222,7 +237,10 @@ class App extends React.Component {
 
                 <div className="preview-container" id="previewCV">
                     <PersonalPreview personalInfo={this.state.personalDetails} />
-                    <WorkPreview workExperience={this.state.workExperience} />
+                    <WorkPreview
+                        workExperience={this.state.workExperience}
+                        handleWorkEdit={this.handleWorkEdit}
+                    />
                     <EducationPreview educationExperience={this.state.educationExperience} />
                 </div>
             </div>

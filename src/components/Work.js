@@ -6,13 +6,13 @@ class Work extends React.Component {
     render() {
         const { workInfo, handleInputChange, handleWorkSubmit } = this.props;
 
-        function workInput(forVal, defaultVal, type = 'text') {
+        function workInput(forVal, value, type = 'text') {
             return (
                 <label htmlFor={forVal}>
                     <input
                         type={type}
                         name={forVal}
-                        defaultValue={defaultVal}
+                        value={value}
                         placeholder={forVal[0].toUpperCase() + forVal.substring(1)}
                         onChange={(event) => handleInputChange(event, 'workDetails')}
                     />
@@ -20,9 +20,8 @@ class Work extends React.Component {
             );
         }
 
-        return (
-            <div className="work-container">
-                <h3>Work Details</h3>
+        function createWorkCreatorForm() {
+            return (
                 <form onSubmit={handleWorkSubmit}>
                     {workInput('company', workInfo.company)}
                     {workInput('position', workInfo.position)}
@@ -32,6 +31,13 @@ class Work extends React.Component {
                     {workInput('description', workInfo.description)}
                     <input type="submit" value="Add Experience" />
                 </form>
+            );
+        }
+
+        return (
+            <div className="work-container">
+                <h3>Work Details</h3>
+                {createWorkCreatorForm()}
             </div>
         );
     }

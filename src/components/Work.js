@@ -23,12 +23,12 @@ class Work extends React.Component {
         function createWorkCreatorForm() {
             return (
                 <form onSubmit={handleWorkSubmit}>
-                    {workInput('company', workInfo.company)}
-                    {workInput('position', workInfo.position)}
-                    {workInput('dateFrom', workInfo.dateFrom)}
-                    {workInput('dateTo', workInfo.dateTo)}
-                    {workInput('location', workInfo.location)}
-                    {workInput('description', workInfo.description)}
+                    {workInput('company', workInfo ? workInfo.company : '')}
+                    {workInput('position', workInfo ? workInfo.position : '')}
+                    {workInput('dateFrom', workInfo ? workInfo.dateFrom : '')}
+                    {workInput('dateTo', workInfo ? workInfo.dateTo : '')}
+                    {workInput('location', workInfo ? workInfo.location : '')}
+                    {workInput('description', workInfo ? workInfo.description : '')}
                     <input type="submit" value="Add Experience" />
                 </form>
             );

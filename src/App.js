@@ -57,7 +57,7 @@ class App extends React.Component {
                 online: 'www.janedoeportfolio.com',
                 blurb: lorem.generateSentences(5),
             },
-            workDetails: defaultWorkExperienceA,
+            workDetails: null,
             workExperience: [defaultWorkExperienceA, defaultWorkExperienceB],
             workExperienceCounter: 1,
             educationDetails: defaultEducationExperience,
@@ -129,18 +129,39 @@ class App extends React.Component {
     handleWorkSubmit(e) {
         e.preventDefault();
 
-        // increment work experience counter
-        const newIndex = this.state.workExperienceCounter + 1;
-        this.setState({ workExperienceCounter: newIndex });
+        // check if currently in memory object already exists in the array
+        const filter = this.state.workExperience.filter(
+            (item) => item.id === this.state.workDetails.id,
+        );
 
-        const newWorkExperience = { ...this.state.workDetails };
-        // assign counter as the id
-        newWorkExperience.id = newIndex;
+        if (filter.length > 0) {
+            // create a deep clone of the existing array
+            const newWorkExperienceArray = structuredClone(this.state.workExperience);
+            const mutatedWorkArray = newWorkExperienceArray.map((workItem) => {
+                // append the modified object in place of the old object
+                if (workItem.id === this.state.workDetails.id) {
+                    return this.state.workDetails;
+                }
+                return workItem;
+            });
 
-        this.setState({
-            workExperience: [...this.state.workExperience, newWorkExperience],
-        });
+            this.setState({
+                workExperience: mutatedWorkArray,
+            });
+        }
+        else {
+            // increment work experience counter
+            const newIndex = this.state.workExperienceCounter + 1;
+            this.setState({ workExperienceCounter: newIndex });
 
+            const newWorkExperience = { ...this.state.workDetails };
+            // assign counter as the id
+            newWorkExperience.id = newIndex;
+
+            this.setState({
+                workExperience: [...this.state.workExperience, newWorkExperience],
+            });
+        }
         this.resetWorkFormInput();
     }
 
@@ -170,19 +191,14 @@ class App extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        // if (this.state.workExperience.length !== prevState.workExperience.length) {
-        //     console.log(this.state.workExperience);
-        //     console.log(this.state.workDetails);
-        // }
-
-        // if (this.state.educationExperience.length !== prevState.educationDetails.length) {
-        //     console.log(this.state.educationExperience);
-        //     console.log(this.state.educationDetails);
-        // }
-
-        if (this.state.workDetails !== prevState.workDetails) {
-            console.log('Current state.workDetails');
+        if (this.state.workExperience.length !== prevState.workExperience.length) {
+            console.log(this.state.workExperience);
             console.log(this.state.workDetails);
+        }
+
+        if (this.state.educationExperience.length !== prevState.educationDetails.length) {
+            console.log(this.state.educationExperience);
+            console.log(this.state.educationDetails);
         }
     }
 

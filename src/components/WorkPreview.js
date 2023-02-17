@@ -26,7 +26,9 @@ class WorkPreview extends React.Component {
                         <span className="company-location_span">{workItem.location}</span>
                     </div>
                     <div className="job-title-and-tenure">
-                        <div className="job-title">{workItem.position.toUpperCase()}</div>
+                        <div className="job-title">
+                            {workItem.position ? workItem.position.toUpperCase() : ''}
+                        </div>
                         <span className="job-tenure-dateRange">
                             {workItem.dateFrom} - {workItem.dateTo}
                         </span>

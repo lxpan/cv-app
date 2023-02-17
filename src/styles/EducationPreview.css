@@ -36,6 +36,21 @@ h3 {
 .education-experience-item {
     display: flex;
     flex-direction: column;
+    position: relative;
+}
+
+.editEducationBtn {
+    position: absolute;
+    top: 10%;
+    z-index: 2;
+    display: none;
+    padding: 4px;
+    background-color: lightblue;
+    font-size: 1rem;
+}
+
+.education-experience-item:hover .editEducationBtn {
+    display: block;
 }
 
 .provider-heading {

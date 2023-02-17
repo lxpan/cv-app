@@ -5,7 +5,7 @@ import '../styles/EducationPreview.css';
 
 class EducationPreview extends React.Component {
     render() {
-        const { educationExperience } = this.props;
+        const { educationExperience, handleEducationEdit } = this.props;
 
         // const lorem = new LoremIpsum();
 
@@ -42,9 +42,12 @@ class EducationPreview extends React.Component {
                         </span>
                     </div>
                     {renderStudy(eduItem)}
-                    {/* <div className="program-minor-major">Major: {eduItem.major}</div>
-
-                    <div className="program-minor-major">Minor: {eduItem.minor}</div> */}
+                    <button
+                        className="editEducationBtn"
+                        onClick={(event) => handleEducationEdit(event, eduItem.id)}
+                    >
+                        Edit Entry
+                    </button>
                 </div>
             );
         }
@@ -66,4 +69,5 @@ export default EducationPreview;
 
 EducationPreview.propTypes = {
     educationExperience: PropTypes.array,
+    handleEducationEdit: PropTypes.func,
 };

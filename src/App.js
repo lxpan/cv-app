@@ -71,6 +71,7 @@ class App extends React.Component {
         this.handleWorkSubmit = this.handleWorkSubmit.bind(this);
         this.handleWorkEdit = this.handleWorkEdit.bind(this);
         this.handleEducationSubmit = this.handleEducationSubmit.bind(this);
+        this.handleEducationEdit = this.handleEducationEdit.bind(this);
 
         // reset handlers
         this.resetWorkFormInput = this.resetWorkFormInput.bind(this);
@@ -190,6 +191,13 @@ class App extends React.Component {
         });
     }
 
+    handleEducationEdit(e, id) {
+        const eduItem = this.state.educationExperience.filter((exp) => exp.id === id);
+        this.setState({
+            educationDetails: eduItem[0],
+        });
+    }
+
     // componentDidUpdate(prevProps, prevState) {
     //     if (this.state.workExperience.length !== prevState.workExperience.length) {
     //         console.log(this.state.workExperience);
@@ -257,7 +265,10 @@ class App extends React.Component {
                         workExperience={this.state.workExperience}
                         handleWorkEdit={this.handleWorkEdit}
                     />
-                    <EducationPreview educationExperience={this.state.educationExperience} />
+                    <EducationPreview
+                        educationExperience={this.state.educationExperience}
+                        handleEducationEdit={this.handleEducationEdit}
+                    />
                 </div>
             </div>
         );

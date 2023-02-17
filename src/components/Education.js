@@ -6,13 +6,13 @@ class Education extends React.Component {
     render() {
         const { educationInfo, handleInputChange, handleEducationSubmit } = this.props;
 
-        function educationInput(forVal, defaultVal, type = 'text') {
+        function educationInput(forVal, value, type = 'text') {
             return (
                 <label htmlFor={forVal}>
                     <input
                         type={type}
                         name={forVal}
-                        defaultValue={defaultVal}
+                        value={value}
                         placeholder={forVal[0].toUpperCase() + forVal.substring(1)}
                         onChange={(event) => handleInputChange(event, 'educationDetails')}
                     />

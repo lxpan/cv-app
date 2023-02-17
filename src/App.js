@@ -169,18 +169,39 @@ class App extends React.Component {
     handleEducationSubmit(e) {
         e.preventDefault();
 
-        // increment work experience counter
-        const newIndex = this.state.educationExperienceCounter + 1;
-        this.setState({ educationExperienceCounter: newIndex });
+        // check if currently in memory object already exists in the array
+        const filter = this.state.educationExperience.filter(
+            (item) => item.id === this.state.educationDetails.id,
+        );
 
-        const newEducationExperience = { ...this.state.educationDetails };
-        // assign counter as the id
-        newEducationExperience.id = newIndex;
+        if (filter.length > 0) {
+            // create a deep clone of the existing array
+            const newEducationExperienceArray = structuredClone(this.state.educationExperience);
+            const mutatedEducationArray = newEducationExperienceArray.map((eduItem) => {
+                // append the modified object in place of the old object
+                if (eduItem.id === this.state.educationDetails.id) {
+                    return this.state.educationDetails;
+                }
+                return eduItem;
+            });
 
-        this.setState({
-            educationExperience: [...this.state.educationExperience, newEducationExperience],
-        });
+            this.setState({
+                educationExperience: mutatedEducationArray,
+            });
+        }
+        else {
+            // increment work experience counter
+            const newIndex = this.state.educationExperienceCounter + 1;
+            this.setState({ educationExperienceCounter: newIndex });
 
+            const newEducationExperience = { ...this.state.educationDetails };
+            // assign counter as the id
+            newEducationExperience.id = newIndex;
+
+            this.setState({
+                educationExperience: [...this.state.educationExperience, newEducationExperience],
+            });
+        }
         this.resetEducationFormInput();
     }
 

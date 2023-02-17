@@ -36,7 +36,9 @@ class EducationPreview extends React.Component {
                         <span className="company-location_span">{eduItem.location}</span>
                     </div>
                     <div className="program-name-and-tenure">
-                        <div className="program-name">{eduItem.program.toUpperCase()}</div>
+                        <div className="program-name">
+                            {eduItem.program ? eduItem.program.toUpperCase() : ''}
+                        </div>
                         <span className="program-dateRange">
                             {eduItem.dateFrom} - {eduItem.dateTo}
                         </span>

@@ -60,7 +60,7 @@ class App extends React.Component {
             workDetails: null,
             workExperience: [defaultWorkExperienceA, defaultWorkExperienceB],
             workExperienceCounter: 1,
-            educationDetails: defaultEducationExperience,
+            educationDetails: null,
             educationExperience: [defaultEducationExperience],
             educationExperienceCounter: 0,
         };

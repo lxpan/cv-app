@@ -105,29 +105,18 @@ function App() {
 
     function handleChange(e, section) {
         const { name, value } = e.target;
-        let sectionDetails;
 
-        switch (section) {
-            case 'personalDetails':
-                sectionDetails = { ...personalDetails };
-                sectionDetails[name] = value;
-                setPersonalDetails(sectionDetails);
-                break;
-            case 'workDetails':
-                sectionDetails = { ...workDetails };
-                sectionDetails[name] = value;
-                setWorkDetails(sectionDetails);
-                break;
-            case 'educationDetails':
-                sectionDetails = { ...educationDetails };
-                sectionDetails[name] = value;
-                setEducationDetails(sectionDetails);
-                break;
-            default:
-                break;
-        }
+        const stateSectionMap = {
+            personalDetails: [personalDetails, setPersonalDetails],
+            workDetails: [workDetails, setWorkDetails],
+            educationDetails: [educationDetails, setEducationDetails],
+        };
+        const get = 0;
+        const set = 1;
 
-        // console.log(state[section]);
+        const sectionDetails = { ...stateSectionMap[section][get] };
+        sectionDetails[name] = value;
+        stateSectionMap[section][set](sectionDetails);
     }
 
     function handleWorkSubmit(e) {

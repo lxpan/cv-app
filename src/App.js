@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { jsPDF } from 'jspdf';
 import { LoremIpsum } from 'lorem-ipsum';
 import html2canvas from 'html2canvas';

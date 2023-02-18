@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { jsPDF } from 'jspdf';
 import { LoremIpsum } from 'lorem-ipsum';
 import html2canvas from 'html2canvas';
@@ -43,42 +43,31 @@ const defaultEducationExperience = {
     id: 0,
 };
 
-class App extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            personalDetails: {
-                name: 'Jane Doe',
-                profession: 'Software Engineer',
-                email: 'j.doe@mail.com',
-                number: '555-555-555',
-                location: 'Melbourne, AU',
-                linkedin: 'linked.in/jane.doe',
-                online: 'www.janedoeportfolio.com',
-                blurb: lorem.generateSentences(5),
-            },
-            workDetails: null,
-            workExperience: [defaultWorkExperienceA, defaultWorkExperienceB],
-            workExperienceCounter: 1,
-            educationDetails: null,
-            educationExperience: [defaultEducationExperience],
-            educationExperienceCounter: 0,
-        };
+function App() {
+    const [personalDetails, setPersonalDetails] = useState({
+        name: 'Jane Doe',
+        profession: 'Software Engineer',
+        email: 'j.doe@mail.com',
+        number: '555-555-555',
+        location: 'Melbourne, AU',
+        linkedin: 'linked.in/jane.doe',
+        online: 'www.janedoeportfolio.com',
+        blurb: lorem.generateSentences(5),
+    });
 
-        this.handleChange = this.handleChange.bind(this);
+    // work state variables
+    const [workDetails, setWorkDetails] = useState(null);
+    const [workExperience, setWorkExperience] = useState([
+        defaultWorkExperienceA,
+        defaultWorkExperienceB,
+    ]);
+    const [workExperienceCounter, setWorkExperienceCounter] = useState(1);
+    // education state variables
+    const [educationDetails, setEducationDetails] = useState(null);
+    const [educationExperience, setEducationExperience] = useState([defaultEducationExperience]);
+    const [educationExperienceCounter, setEducationExperienceCounter] = useState(0);
 
-        // button event handlers
-        this.handleWorkSubmit = this.handleWorkSubmit.bind(this);
-        this.handleWorkEdit = this.handleWorkEdit.bind(this);
-        this.handleEducationSubmit = this.handleEducationSubmit.bind(this);
-        this.handleEducationEdit = this.handleEducationEdit.bind(this);
-
-        // reset handlers
-        this.resetWorkFormInput = this.resetWorkFormInput.bind(this);
-        this.resetEducationFormInput = this.resetEducationFormInput.bind(this);
-    }
-
-    resetWorkFormInput() {
+    function resetWorkFormInput() {
         const emptyWorkDetails = {
             company: '',
             position: '',
@@ -88,7 +77,7 @@ class App extends React.Component {
             description: '',
         };
 
-        this.setState({ workDetails: emptyWorkDetails });
+        setWorkDetails(emptyWorkDetails);
 
         const inputs = Array.from(document.querySelectorAll('.work-container input'));
         inputs.forEach((input) => {
@@ -96,7 +85,7 @@ class App extends React.Component {
         });
     }
 
-    resetEducationFormInput() {
+    function resetEducationFormInput() {
         const emptyEducationDetails = {
             provider: '',
             location: '',
@@ -106,7 +95,7 @@ class App extends React.Component {
             dateTo: '',
         };
 
-        this.setState({ educationDetails: emptyEducationDetails });
+        setEducationDetails(emptyEducationDetails);
 
         const inputs = Array.from(document.querySelectorAll('.education-container input'));
         inputs.forEach((input) => {
@@ -114,109 +103,113 @@ class App extends React.Component {
         });
     }
 
-    handleChange(e, section) {
+    function handleChange(e, section) {
         const { name, value } = e.target;
+        let sectionDetails;
 
-        // create a dummy object to perform changes on
-        const sectionDetails = { ...this.state[section] };
-        // update value on dummy object
-        sectionDetails[name] = value;
-        // replace section details object with dummy object
-        this.setState({ [section]: sectionDetails });
+        switch (section) {
+            case 'personalDetails':
+                sectionDetails = { ...personalDetails };
+                sectionDetails[name] = value;
+                setPersonalDetails(sectionDetails);
+                break;
+            case 'workDetails':
+                sectionDetails = { ...workDetails };
+                sectionDetails[name] = value;
+                setWorkDetails(sectionDetails);
+                break;
+            case 'educationDetails':
+                sectionDetails = { ...educationDetails };
+                sectionDetails[name] = value;
+                setEducationDetails(sectionDetails);
+                break;
+            default:
+                break;
+        }
 
-        // console.log(this.state[section]);
+        // console.log(state[section]);
     }
 
-    handleWorkSubmit(e) {
+    function handleWorkSubmit(e) {
         e.preventDefault();
 
         // check if currently in memory object already exists in the array
-        const filter = this.state.workExperience.filter(
-            (item) => item.id === this.state.workDetails.id,
-        );
+        const filter = workExperience.filter((item) => item.id === workDetails.id);
 
         if (filter.length > 0) {
             // create a deep clone of the existing array
-            const newWorkExperienceArray = structuredClone(this.state.workExperience);
+            const newWorkExperienceArray = structuredClone(workExperience);
             const mutatedWorkArray = newWorkExperienceArray.map((workItem) => {
                 // append the modified object in place of the old object
-                if (workItem.id === this.state.workDetails.id) {
-                    return this.state.workDetails;
+                if (workItem.id === workDetails.id) {
+                    return workDetails;
                 }
                 return workItem;
             });
 
-            this.setState({
-                workExperience: mutatedWorkArray,
-            });
+            setWorkExperience(mutatedWorkArray);
         }
         else {
             // increment work experience counter
-            const newIndex = this.state.workExperienceCounter + 1;
-            this.setState({ workExperienceCounter: newIndex });
+            const newIndex = workExperienceCounter + 1;
+            setWorkExperienceCounter(newIndex);
 
-            const newWorkExperience = { ...this.state.workDetails };
+            const newWorkExperience = { ...workDetails };
             // assign counter as the id
             newWorkExperience.id = newIndex;
 
-            this.setState({
-                workExperience: [...this.state.workExperience, newWorkExperience],
-            });
+            setWorkExperience([...workExperience, newWorkExperience]);
         }
-        this.resetWorkFormInput();
+        resetWorkFormInput();
     }
 
-    handleEducationSubmit(e) {
+    function handleEducationSubmit(e) {
         e.preventDefault();
 
         // check if currently in memory object already exists in the array
-        const filter = this.state.educationExperience.filter(
-            (item) => item.id === this.state.educationDetails.id,
-        );
+        const filter = educationExperience.filter((item) => item.id === educationDetails.id);
 
         if (filter.length > 0) {
             // create a deep clone of the existing array
-            const newEducationExperienceArray = structuredClone(this.state.educationExperience);
+            const newEducationExperienceArray = structuredClone(educationExperience);
             const mutatedEducationArray = newEducationExperienceArray.map((eduItem) => {
                 // append the modified object in place of the old object
-                if (eduItem.id === this.state.educationDetails.id) {
-                    return this.state.educationDetails;
+                if (eduItem.id === educationDetails.id) {
+                    return educationDetails;
                 }
                 return eduItem;
             });
 
-            this.setState({
-                educationExperience: mutatedEducationArray,
-            });
+            setEducationExperience(mutatedEducationArray);
         }
         else {
             // increment work experience counter
-            const newIndex = this.state.educationExperienceCounter + 1;
-            this.setState({ educationExperienceCounter: newIndex });
+            const newIndex = educationExperienceCounter + 1;
+            setEducationExperienceCounter(newIndex);
 
-            const newEducationExperience = { ...this.state.educationDetails };
+            const newEducationExperience = { ...educationDetails };
             // assign counter as the id
             newEducationExperience.id = newIndex;
 
-            this.setState({
-                educationExperience: [...this.state.educationExperience, newEducationExperience],
-            });
+            setEducationExperience([...educationExperience, newEducationExperience]);
         }
-        this.resetEducationFormInput();
+        resetEducationFormInput();
     }
 
-    handleWorkEdit(e, id) {
-        const workItem = this.state.workExperience.filter((exp) => exp.id === id);
-        this.setState({
-            workDetails: workItem[0],
-        });
+    function handleWorkEdit(e, id) {
+        const workItem = workExperience.filter((exp) => exp.id === id);
+        setWorkDetails(workItem[0]);
+        // setState({
+        //     workDetails: workItem[0],
+        // });
     }
 
-    handleEducationEdit(e, id) {
-        const eduItem = this.state.educationExperience.filter((exp) => exp.id === id);
-        this.setState({
-            educationDetails: eduItem[0],
-        });
+    function handleEducationEdit(e, id) {
+        const eduItem = educationExperience.filter((exp) => exp.id === id);
+        setEducationDetails(eduItem[0]);
+        // setState({
+        //     educationDetails: eduItem[0],
+        // });
     }
 
     // componentDidUpdate(prevProps, prevState) {
@@ -231,69 +224,61 @@ class App extends React.Component {
     //     }
     // }
 
-    render() {
-        function generatePDF() {
-            const input = document.getElementById('previewCV');
-            html2canvas(input).then((canvas) => {
-                const image = canvas.toDataURL('image/jpeg', 1.0);
-                const doc = new jsPDF('p', 'px', 'a4');
-                const pageWidth = doc.internal.pageSize.getWidth();
-                const pageHeight = doc.internal.pageSize.getHeight();
+    function generatePDF() {
+        const input = document.getElementById('previewCV');
+        html2canvas(input).then((canvas) => {
+            const image = canvas.toDataURL('image/jpeg', 1.0);
+            const doc = new jsPDF('p', 'px', 'a4');
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const pageHeight = doc.internal.pageSize.getHeight();
 
-                const widthRatio = pageWidth / canvas.width;
-                const heightRatio = pageHeight / canvas.height;
-                const ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
+            const widthRatio = pageWidth / canvas.width;
+            const heightRatio = pageHeight / canvas.height;
+            const ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
 
-                const canvasWidth = canvas.width * ratio;
-                const canvasHeight = canvas.height * ratio;
+            const canvasWidth = canvas.width * ratio;
+            const canvasHeight = canvas.height * ratio;
 
-                const marginX = (pageWidth - canvasWidth) / 2;
-                // const marginY = (pageHeight - canvasHeight) / 2;
-                const marginY = 30;
+            const marginX = (pageWidth - canvasWidth) / 2;
+            // const marginY = (pageHeight - canvasHeight) / 2;
+            const marginY = 30;
 
-                doc.addImage(image, 'JPEG', marginX, marginY, canvasWidth, canvasHeight);
-                doc.output('dataurlnewwindow');
-            });
-        }
+            doc.addImage(image, 'JPEG', marginX, marginY, canvasWidth, canvasHeight);
+            doc.output('dataurlnewwindow');
+        });
+    }
 
-        return (
-            <div className="cv-grid">
-                <div className="creator-container">
-                    <Personal
-                        personalInfo={this.state.personalDetails}
-                        handleInputChange={this.handleChange}
-                    />
-                    <Work
-                        workInfo={this.state.workDetails}
-                        handleInputChange={this.handleChange}
-                        handleWorkSubmit={this.handleWorkSubmit}
-                    />
-                    <Education
-                        educationInfo={this.state.educationDetails}
-                        handleInputChange={this.handleChange}
-                        handleEducationSubmit={this.handleEducationSubmit}
-                    />
-                    <div className="creator-button-container">
-                        <button id="savePdfBtn" onClick={generatePDF}>
-                            Save Preview as PDF
-                        </button>
-                    </div>
-                </div>
-
-                <div className="preview-container" id="previewCV">
-                    <PersonalPreview personalInfo={this.state.personalDetails} />
-                    <WorkPreview
-                        workExperience={this.state.workExperience}
-                        handleWorkEdit={this.handleWorkEdit}
-                    />
-                    <EducationPreview
-                        educationExperience={this.state.educationExperience}
-                        handleEducationEdit={this.handleEducationEdit}
-                    />
+    return (
+        <div className="cv-grid">
+            <div className="creator-container">
+                <Personal personalInfo={personalDetails} handleInputChange={handleChange} />
+                <Work
+                    workInfo={workDetails}
+                    handleInputChange={handleChange}
+                    handleWorkSubmit={handleWorkSubmit}
+                />
+                <Education
+                    educationInfo={educationDetails}
+                    handleInputChange={handleChange}
+                    handleEducationSubmit={handleEducationSubmit}
+                />
+                <div className="creator-button-container">
+                    <button id="savePdfBtn" onClick={generatePDF}>
+                        Save Preview as PDF
+                    </button>
                 </div>
             </div>
-        );
-    }
+
+            <div className="preview-container" id="previewCV">
+                <PersonalPreview personalInfo={personalDetails} />
+                <WorkPreview workExperience={workExperience} handleWorkEdit={handleWorkEdit} />
+                <EducationPreview
+                    educationExperience={educationExperience}
+                    handleEducationEdit={handleEducationEdit}
+                />
+            </div>
+        </div>
+    );
 }
 
 export default App;

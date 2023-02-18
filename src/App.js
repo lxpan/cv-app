@@ -188,17 +188,11 @@ function App() {
     function handleWorkEdit(e, id) {
         const workItem = workExperience.filter((exp) => exp.id === id);
         setWorkDetails(workItem[0]);
-        // setState({
-        //     workDetails: workItem[0],
-        // });
     }
 
     function handleEducationEdit(e, id) {
         const eduItem = educationExperience.filter((exp) => exp.id === id);
         setEducationDetails(eduItem[0]);
-        // setState({
-        //     educationDetails: eduItem[0],
-        // });
     }
 
     // componentDidUpdate(prevProps, prevState) {

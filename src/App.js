@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { jsPDF } from 'jspdf';
 import { LoremIpsum } from 'lorem-ipsum';
 import html2canvas from 'html2canvas';
@@ -195,17 +195,11 @@ function App() {
         setEducationDetails(eduItem[0]);
     }
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     if (this.state.workExperience.length !== prevState.workExperience.length) {
-    //         console.log(this.state.workExperience);
-    //         console.log(this.state.workDetails);
-    //     }
-
-    //     if (this.state.educationExperience.length !== prevState.educationDetails.length) {
-    //         console.log(this.state.educationExperience);
-    //         console.log(this.state.educationDetails);
-    //     }
-    // }
+    // further hooks required to restore prevState comparison with current state
+    // useEffect(() => {
+    //     console.log(workExperience);
+    //     console.log(educationExperience);
+    // }, [workExperience, educationExperience]);
 
     function generatePDF() {
         const input = document.getElementById('previewCV');
